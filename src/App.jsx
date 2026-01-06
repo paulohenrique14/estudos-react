@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import PrimeiroForm from './components/forms/PrimeiroForm'
 import SegundoForm from './components/forms/SegundoForm'
+import Requisicao from './components/requisicoes-http/Requisicao'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,8 +23,9 @@ function App() {
   return (
     <>
       <h1>hello world</h1>
-      {/*<PrimeiroForm user={user}/>*/}
-      <SegundoForm user={secUser}/>
+      {/*<PrimeiroForm user={user}/>
+      <SegundoForm user={secUser}/>*/}
+      <Requisicao />
     </>
   )
 }
