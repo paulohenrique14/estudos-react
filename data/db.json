@@ -19,6 +19,26 @@
       "id": "b881",
       "name": "Tênis",
       "price": "299.99"
+    },
+    {
+      "id": "901e",
+      "name": "Cabide",
+      "price": "9.99"
+    },
+    {
+      "id": "d566",
+      "name": "Cabide",
+      "price": "9.99"
+    },
+    {
+      "id": "fdf5",
+      "name": "Picanha do lula",
+      "price": "399.99"
+    },
+    {
+      "id": "ae52",
+      "name": "Camiseta",
+      "price": "39.90"
     }
   ]
 }

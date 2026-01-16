@@ -1,38 +1,29 @@
-import React, {useEffect, useState} from 'react'
+import React, {use, useEffect, useState} from 'react'
 import { useGetData } from '../../hooks/useGetData';
+import { usePostData } from '../../hooks/usePostData';
 
 const Requisicao = () => {
 
     const url = 'http://localhost:3000/products'
 
-    const {dataReturn:items} = useGetData(url);
+    const {dataReturn} = useGetData(url)
+    const {handlePostData} = usePostData(url)
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
 
-    console.log(items)
+  
 
     const handleSubmit = async(e) =>{
       e.preventDefault();
-
-      console.log(name, price)
 
       const newProduct = {
         name,
         price
       };
 
-      const res = await fetch(url, {
-        method: "POST",
-        headers:{
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newProduct)
-      })
+      handlePostData(newProduct)
 
-      const addedProduct = await res.json()
-
-      setDataReturn((prevData) => [...prevData, addedProduct])
     }
 
   return (
@@ -56,7 +47,7 @@ const Requisicao = () => {
         </form>
         
         <div>
-          {items && items.map((product) => (
+          {dataReturn && dataReturn.map((product) => (
               <p key={product.id}>{product.name} - R${product.price}</p>
             ))
           }

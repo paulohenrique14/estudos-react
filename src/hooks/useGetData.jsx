@@ -1,20 +1,43 @@
 import { useEffect, useState } from "react"
+import { useFormState } from "react-dom";
 
 export const useGetData = (url) => {
 
-    const [dataReturn, setDataReturn] = useState([])
+    const [dataReturn, setDataReturn] = useState([]);
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
+
+
         const handleGetData = async() => {
-            const res = await fetch(url);
+    
+            setLoading(true);
 
-            const data = await res.json();
+            try {
+                const res = await fetch(url);
+            
+                const data = await res.json();
 
-            setDataReturn(data)
-        
+                setDataReturn(data)
+
+                if (!res.ok){
+                    throw new Error('erro');
+                }
+                
+            } catch (error) {
+                console.log(error);
+                setLoading(false)
+            }
+            
+
+            setLoading(false);
+
         }
 
         handleGetData();
-    }, [url])
+
+    }, [])
+
 
     return {dataReturn}
-}
+}   
