@@ -39,6 +39,16 @@
       "id": "ae52",
       "name": "Camiseta",
       "price": "39.90"
+    },
+    {
+      "id": "d38e",
+      "name": "teste",
+      "price": "29.9"
+    },
+    {
+      "id": "fadd",
+      "name": "teste",
+      "price": "044"
     }
   ]
 }

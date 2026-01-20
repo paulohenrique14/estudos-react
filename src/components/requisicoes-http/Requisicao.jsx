@@ -5,14 +5,18 @@ import { usePostData } from '../../hooks/usePostData';
 const Requisicao = () => {
 
     const url = 'http://localhost:3000/products'
+    const [data, setData] = useState([])
 
     const {dataReturn} = useGetData(url)
+
+    useEffect(() => (
+      setData(dataReturn)
+    ), [dataReturn])
+
     const {handlePostData} = usePostData(url)
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
-
-  
 
     const handleSubmit = async(e) =>{
       e.preventDefault();
@@ -22,8 +26,9 @@ const Requisicao = () => {
         price
       };
 
-      handlePostData(newProduct)
+      const returnedProduct = await handlePostData(newProduct)
 
+      setData((prev) => [...prev, returnedProduct])
     }
 
   return (
@@ -47,7 +52,7 @@ const Requisicao = () => {
         </form>
         
         <div>
-          {dataReturn && dataReturn.map((product) => (
+          {data && data.map((product) => (
               <p key={product.id}>{product.name} - R${product.price}</p>
             ))
           }

@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export const usePostData = (url) => {
 
     const handlePostData = async(product) => {
@@ -15,10 +17,13 @@ export const usePostData = (url) => {
                 throw new Error('Erro post');
             }
 
+            return  await res.json();
+
             
 
         } catch (error) {
             console.log('erro ao dar post na API: ', error)
+            return null
         }
     }
 
